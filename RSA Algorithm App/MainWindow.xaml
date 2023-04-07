@@ -1,0 +1,20 @@
+﻿<Window x:Class="RSA_Algorithm_App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RSA_Algorithm_App"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="386" Width="659">
+    <Grid Background="#FFD6D6D6" Margin="0,0,0,1">
+        <Label x:Name="InsertEncryptText" Style="{StaticResource CustomFont}" Content="Encrypt Text" HorizontalAlignment="Left" Margin="36,127,0,0" VerticalAlignment="Top" Height="35" Width="141" FontSize="20" RenderTransformOrigin="0.754,0.476"/>
+        <TextBox x:Name="encryptTextBox" HorizontalAlignment="Left" Margin="40,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" Height="139" FontSize="16" BorderThickness="0"/>
+        <Label x:Name="insertNumbers" Style="{StaticResource CustomFont}" Content="Numbers" HorizontalAlignment="Left" Margin="36,25,0,0" VerticalAlignment="Top" FontSize="20" Width="100"/>
+        <TextBox x:Name="insertNumberP" HorizontalAlignment="Left" Margin="40,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="41" Height="30" FontSize="16" BorderThickness="0"/>
+        <TextBox x:Name="insertNumberQ" HorizontalAlignment="Left" Margin="104,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" Height="30" FontSize="16" BorderThickness="0"/>
+        <TextBox x:Name="decryptTextBox" HorizontalAlignment="Left" Margin="399,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" Height="139" FontSize="16" BorderThickness="0"/>
+        <Label x:Name="InsertDecryptText" Style="{StaticResource CustomFont}" Content="Decrypt Text" HorizontalAlignment="Left" Margin="395,127,0,0" VerticalAlignment="Top" Height="35" Width="141" FontSize="20" RenderTransformOrigin="0.754,0.476"/>
+        <Button x:Name="decryptButton" Content="Decrypt" HorizontalAlignment="Left" Margin="281,257,0,0" VerticalAlignment="Top" Height="46" Width="92" FontSize="14" BorderThickness="0" Background="White"/>
+        <Button x:Name="encryptButton" Content="Encrypt" HorizontalAlignment="Left" Margin="281,191,0,0" VerticalAlignment="Top" Height="46" Width="92" FontSize="14" BorderThickness="0" Background="White"/>
+    </Grid>
+</Window>
