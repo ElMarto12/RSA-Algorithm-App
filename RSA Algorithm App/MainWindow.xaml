@@ -15,6 +15,6 @@
         <TextBox x:Name="decryptTextBox" HorizontalAlignment="Left" Margin="399,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" Height="139" FontSize="16" BorderThickness="0"/>
         <Label x:Name="InsertDecryptText" Style="{StaticResource CustomFont}" Content="Decrypt Text" HorizontalAlignment="Left" Margin="395,127,0,0" VerticalAlignment="Top" Height="35" Width="141" FontSize="20" RenderTransformOrigin="0.754,0.476"/>
         <Button x:Name="decryptButton" Content="Decrypt" HorizontalAlignment="Left" Margin="281,257,0,0" VerticalAlignment="Top" Height="46" Width="92" FontSize="14" BorderThickness="0" Background="White"/>
-        <Button x:Name="encryptButton" Content="Encrypt" HorizontalAlignment="Left" Margin="281,191,0,0" VerticalAlignment="Top" Height="46" Width="92" FontSize="14" BorderThickness="0" Background="White"/>
+        <Button x:Name="encryptButton" Content="Encrypt" HorizontalAlignment="Left" Margin="281,191,0,0" VerticalAlignment="Top" Height="46" Width="92" FontSize="14" BorderThickness="0" Background="White" Click="encryptButton_Click"/>
     </Grid>
 </Window>

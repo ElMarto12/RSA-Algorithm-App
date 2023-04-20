@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RSA_Algorithm_App.Utility;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace RSA_Algorithm_App
 {
@@ -23,6 +26,11 @@ namespace RSA_Algorithm_App
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void encryptButton_Click(object sender, RoutedEventArgs e)
+        {
+            DBConnection.MakeConnection();
         }
     }
 }
