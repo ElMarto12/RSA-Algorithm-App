@@ -26,11 +26,19 @@ namespace RSA_Algorithm_App
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         private void encryptButton_Click(object sender, RoutedEventArgs e)
         {
             DBConnection.MakeConnection();
+
+            while (Algorithm.greatestCommonDivisor(Algorithm.E, Algorithm.findF(Convert.ToInt32(insertNumberP.Text), Convert.ToInt32(insertNumberQ.Text))) != 1){
+
+                Algorithm.E++;
+            }
+
+            decryptTextBox.Text = Algorithm.cypherText(encryptTextBox.Text, Algorithm.findN(Convert.ToInt32(insertNumberP.Text), Convert.ToInt32(insertNumberQ.Text)));
         }
     }
 }
