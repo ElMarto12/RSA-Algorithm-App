@@ -1,82 +1,81 @@
 ﻿using MySqlX.XDevAPI.Common;
+using Org.BouncyCastle.Asn1.Cmp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace RSA_Algorithm_App.Utility
 {
-    public static class Algorithm
+    public class Algorithm : CalculateRSA
     {
-        private static int e = 17;
-        
-        public static int E
+        private int n;
+        private int phi;
+        private int e;
+        private int d;
+
+        public int D
+        {
+            set { d = value; }
+            get { return d; }
+        }
+        public int N
+        {
+           get { return n; }
+           set { n = value; }
+        }
+
+        public int Phi
+        {
+            get { return phi; }
+            set { phi = value; }
+        }
+
+        public int E
         {
             get { return e; }
             set { e = value; }
         }
-        
-        //Calculates n 
-        public static int findN(int p, int q)
+
+        public string Encrypt(string text, int e, int n)
         {
-            int result;
+            byte[] unicodeBytes = Encoding.Unicode.GetBytes(text);
 
-            return result = p * q;
-        }
-
-        //Calculates phi
-        public static int findF(int p, int q)
-        {
-            int result; 
-            
-            return result = (p - 1) * (q - 1);
-        }
-
-        public static int modulePow(int bse, int pwr, int module)
-        {
-            int result = 1;
-
-            bse %= module;
-
-            while(pwr > 0)
+            List<int> encrypted = new List<int>();
+            foreach (byte b in unicodeBytes)
             {
-                if((bse & 1) == 1)
+                encrypted.Add(ModuloPower(b, e, n));
+            }
+
+            StringBuilder sb = new StringBuilder();
+            foreach (int num in encrypted)
+            {
+                sb.Append(num.ToString()).Append(' ');
+            }
+
+            return sb.ToString().TrimEnd();
+        }
+        public string Decrypt(string text, int d, int n)
+        {
+            List<byte> decrypted = new List<byte>();
+            string[] numbers = text.Trim().Split(' ');
+            foreach (string num in numbers)
+            {
+                if (!string.IsNullOrEmpty(num))
                 {
-                    result = (result * bse) % module;
+                    int encryptedByte = int.Parse(num);
+                    decrypted.Add((byte)ModuloPower(encryptedByte, d, n));
                 }
-
-                pwr >>= 1;
-                bse = (bse * bse) % module;
             }
 
-            return result;
-        }
+            string decryptedMessage = Encoding.Unicode.GetString(decrypted.ToArray());
 
-        public static string cypherText(string text, int n)
-        {
-            string cypherResult = "";
-
-            for (int i = 0; i < text.Length; i++)
-            {
-                int ascii = (int)text[i];
-                int cypherAscii = modulePow(ascii, e, n);
-                cypherResult += Convert.ToChar(cypherAscii);
-            }
-
-            return cypherResult;
-        }
-
-        public static int greatestCommonDivisor(int a , int b)
-        {
-            while(b != 0)
-            {
-                int temp = b;
-                b = a % b;
-                a = temp;
-            }
-
-            return a;
+            return decryptedMessage;
         }
     }
+        
 }

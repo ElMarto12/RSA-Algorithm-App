@@ -23,22 +23,30 @@ namespace RSA_Algorithm_App
     /// </summary>
     public partial class MainWindow : Window
     {
+        Algorithm rsa = new Algorithm();
+
         public MainWindow()
         {
             InitializeComponent();
-
+            
         }
 
         private void encryptButton_Click(object sender, RoutedEventArgs e)
         {
-            DBConnection.MakeConnection();
+            rsa.N = rsa.CalculateN(Convert.ToInt32(insertNumberP.Text), Convert.ToInt32(insertNumberQ.Text));
+            rsa.Phi = rsa.CalculatePhi(Convert.ToInt32(insertNumberP.Text), Convert.ToInt32(insertNumberQ.Text));
+            rsa.E = rsa.CalculateE(rsa.Phi, rsa.N);
 
-            while (Algorithm.greatestCommonDivisor(Algorithm.E, Algorithm.findF(Convert.ToInt32(insertNumberP.Text), Convert.ToInt32(insertNumberQ.Text))) != 1){
+            MessageBox.Show(rsa.E.ToString());
+            decryptTextBox.Text = rsa.Encrypt(encryptTextBox.Text, rsa.E, rsa.N);
+        }
 
-                Algorithm.E++;
-            }
+        private void decryptButton_Click(object sender, RoutedEventArgs e)
+        {
+           
+            rsa.D = rsa.ModuloInverse(rsa.E, rsa.Phi);
 
-            decryptTextBox.Text = Algorithm.cypherText(encryptTextBox.Text, Algorithm.findN(Convert.ToInt32(insertNumberP.Text), Convert.ToInt32(insertNumberQ.Text)));
+            encryptTextBox.Text = rsa.Decrypt(decryptTextBox.Text, rsa.D, rsa.N);
         }
     }
 }
